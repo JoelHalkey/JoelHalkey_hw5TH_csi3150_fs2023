@@ -4,7 +4,7 @@ Quiz App Demo is a computer science based quiz app that allows for timed testing
 
 ## Table of Contents
 - **[Project Features](#Project-Features)**
-- **[Project Structure](#Project-Structure)**
+- **[Project Structure](#Project-Folder-Structure)**
 - **[Code Explanation](#Code-Explanation)**
     - CSS
     - JavaScript
@@ -17,7 +17,8 @@ Quiz App Demo is a computer science based quiz app that allows for timed testing
 
 <hr>
 
-### Project Structor
+### Project Folder Structure
+![ ](https://github.com/JoelHalkey/JoelHalkey_hw5TH_csi3150_fs2023/blob/main/readme_assets/project_structure.png "project structure")
 <hr>
 
 ### Code Explanation
@@ -50,4 +51,3 @@ restart_quiz.addEventListener("click", (e) => {
 
 
 
-![ ](https://github.com/JoelHalkey/JoelHalkey_hw5TH_csi3150_fs2023/blob/main/readme_assets/project_structure.png "project structure")
