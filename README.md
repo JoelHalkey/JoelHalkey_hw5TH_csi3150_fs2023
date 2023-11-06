@@ -2,7 +2,7 @@
 
 Quiz App Demo is a computer science based quiz app that allows for timed testing of different computer science terms, each question being given **15 seconds** to be answered. Currently there are **5 questions** available.
 
-_Disclaimer: This README file is written with the assumption that the reader is familiar with HTML, CSS, and JavaScript._
+_Disclaimer: This README file is written with the assumption that the reader is familiar with CSS, JavaScript, and HTML._
 
 ## Table of Contents
 - **[App Features](#App-Features)**
@@ -29,11 +29,24 @@ The entry point of the app is `index.html`, which uses `style.css` for styling, 
 ### Code Overview
 
 ### CSS
+
+#### Main Box Styling
+This styling found in `style.css` is used on all the different boxes of the page, the start, the info, question boxes, and the result box.
+```css
+.start_btn,
+.info_box,
+.quiz_box,
+.result_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+```
 <hr>
 
 ### JavaScript
-
-
 
 #### Start Functionality
 
@@ -113,10 +126,115 @@ quit_quiz.addEventListener("click", (e) => {
 
 #### Timer Functionality
 
+This is the functionality for starting the timer when the next question is entered.
+```javascript
+function startTimer(time) {
+  counter = setInterval(timer, 1000);
+  function timer() {
+    timeCount.textContent = time;              //change the value of timeCount with time value
+    time--;                                    //decrement the time value
+    if (time < 9) {                            //if timer is less than 9
+                    
+      let addZero = timeCount.textContent;
+      timeCount.textContent = "0" + addZero;   //add a 0 before time value
+    }
+    if (time < 0) {                            //if timer is less than 0
+                        
+      clearInterval(counter);                                                     //clear counter
+      timeText.textContent = "Time Off";                                          //change the time text to time off
+      const allOptions = option_list.children.length;                             //get all option items
+      let correcAns = questions[que_count].answer;                                //get correct answer from array
+      for (i = 0; i < allOptions; i++) {
+        if (option_list.children[i].textContent == correcAns) {                   //if there is an option which is matched to an array answer
+          option_list.children[i].setAttribute("class", "option correct");        //add green color to matched option
+          option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag);   //add tick icon to matched option
+          console.log("Time Off: Auto selected correct answer.");
+        }
+      }
+      for (i = 0; i < allOptions; i++) {
+        option_list.children[i].classList.add("disabled");                        //once user select an option then disabled all options
+      }
+      next_btn.classList.add("show");                                             //show the next button if user selected any option
+    }
+  }
+}
+```
+
+The functionality of starting and updating the timer line for each question.
+```javascript
+function startTimerLine(time) {             // Shows a progress bar mirroring timer value left
+  counterLine = setInterval(timer, 29);
+  function timer() {
+    time += 1;                              //upgrading time value with 1
+    time_line.style.width = time + "px";    //increasing width of time_line with px by time value
+    if (time > 549) {                       // Shows a progress bar mirroring timer value left
+        
+      clearInterval(counterLine);           //clear counterLine
+    }
+  }
+}
+```
+
 <hr>
 
 ### HTML
 
+#### Information and Start Section
+`info_box` is the starting section after the start button that lists the rules and contains continue and exit buttons.
+```html
+<div class="info_box">
+    ... <!-- Rules -->
+    <div class="buttons">
+        <button class="quit">Exit Quiz</button>
+        <button class="restart">Continue</button>
+    </div>
+</div>
+```
+
+#### Question Section
+
+`quiz_box` is where you insert questions and answer options, as well adjust the time initially present for the timer.
+```html
+<div class="quiz_box">
+    <header>
+        <div class="title">Demo Quiz App in JavaScript</div>
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+          </div>
+        <div class="time_line"></div>
+     </header>
+     <section>
+         <div class="que_text">
+             ... <!-- Insert questions from ./js/questions.js -->
+         </div>
+         <div class="option_list">
+             ... <!-- Insert options to questions from ./js/questions.js -->
+         </div>
+     </section>                 
+     <footer>
+         ... <!-- Footer of quiz box: Contains next question button-->
+     </footer>
+ </div>
+```
+#### Finishing and Result Section
+`result_box` is where the results of your quiz are given, and options where you can restart the quiz or quit.
+```html
+<div class="result_box">
+    ... <!-- Icon -->
+    <div class="complete_text">You've completed the Quiz!</div>
+    <div class="score_text">
+        <!-- Insert dynamic user score as Result from JavaScript -->
+    </div>
+    <div class="buttons">
+        <button class="restart">Replay Quiz</button>
+        <button class="quit">Quit Quiz</button>
+    </div>
+</div>
+```
+
+
+####
 <hr>
 
 ### Individual Implementation
