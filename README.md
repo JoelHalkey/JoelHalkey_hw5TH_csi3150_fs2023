@@ -1,6 +1,6 @@
 # Quiz App (JoelHalkey_hw5TH_csi3150_fs2023)
 
-Quiz App Demo is a computer science based quiz app that allows for timed testing of different computer science terms, each question being given **15 seconds** to be answered. Currently there are **5 questions** available.
+Quiz App Demo is a computer science based quiz app that allows for timed testing of different computer science terms and topics, each question being given **15 seconds** to be answered. Currently there are **5 questions** available.
 
 _Disclaimer: This README file is written with the assumption that the reader is familiar with CSS, JavaScript, and HTML._
 
@@ -26,7 +26,7 @@ _Disclaimer: This README file is written with the assumption that the reader is 
 The entry point of the app is `index.html`, which uses `style.css` for styling, `quizApp.js` to be able to start, continue through, and restart or quit the quiz. `questions.js` is used by `quizApp.js` and contains the questions for the app, including the question, question number, correct answer, and answer options.
 <hr>
 
-### Code Overview
+### Brief Code Overview
 
 ### CSS
 
@@ -42,6 +42,22 @@ This styling found in `style.css` is used on all the different boxes of the page
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+```
+
+#### Answer Option Styling
+This styling is used to style the content within each of the answer options, including the text and icon.
+```css
+section .option_list .option .icon {
+  height: 26px;
+  width: 26px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 13px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  line-height: 24px;
 }
 ```
 <hr>
